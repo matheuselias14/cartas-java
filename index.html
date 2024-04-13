@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas</title>
+    <style>
+        .nome-naipe {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function nomeNaipe(Naipe) {
+            var naipe;
+            switch (Naipe) {
+                case 1:
+                    naipe = "Rei";
+                    break;
+                case 2:
+                    naipe = "Copas";
+                    break;
+                case 3:
+                    naipe = "Ouro";
+                    break;
+                case 4:
+                    naipe = "Espada";
+                    break;
+            }
+            return "<span class='nome-naipe'>" + naipe + "</span>";
+        }
+
+        function RecebeCarta(P, nome) {
+            document.write("<p>Nome: " + nome + "</p>");
+            document.write("<p>Naipe da Carta: " + nomeNaipe(P.Naipe) + "</p>");
+            document.write("<p>Numero da Carta: " + P.Atributo1 + "</p>");
+            document.write("<br>");
+        }
+
+        function main() {
+            var nome1 = prompt("Player 1, digite seu nome:");
+            var nome2 = prompt("Player 2, digite seu nome:");
+
+            var Cartas = [];
+
+            for (var x = 0; x < 10; x++) {
+                var carta = {};
+                carta.Naipe = Math.floor(Math.random() * 4) + 1;
+                carta.Atributo1 = Math.floor(Math.random() * 13) + 1;
+                Cartas.push(carta);
+            }
+
+            for (var x = 0; x < 10; x++) {
+                if (x < 5) {
+                    RecebeCarta(Cartas[x], nome1);
+                } else {
+                    RecebeCarta(Cartas[x], nome2);
+                }
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
